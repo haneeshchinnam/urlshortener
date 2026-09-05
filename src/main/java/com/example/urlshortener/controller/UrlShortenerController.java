@@ -24,8 +24,10 @@ public class UrlShortenerController {
 
     @GetMapping("/{shortUrl}")
     public ResponseEntity<Void> redirectToOriginalUrl(@PathVariable(name = "shortUrl") String shortUrl) {
-        // Logic to retrieve the original URL from the short URL would go here
-        String originalUrl = urlShortenerInterface.getOriginalUrl(shortUrl); // Placeholder for the original URL
+        String originalUrl = urlShortenerInterface.getOriginalUrl(shortUrl);
+        if (originalUrl == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.status(302).header("Location", originalUrl).build();
     }
 }

@@ -24,3 +24,11 @@ spring:
     password: 138717
     baseline-on-migrate: true
     locations: classpath:db/migration
+
+app:
+  cache:
+    caffeine:
+      maximum-size: 10000
+      ttl: 5m
+    redis:
+      ttl: 30m
